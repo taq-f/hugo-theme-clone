@@ -66,6 +66,10 @@
                 <link rel="stylesheet" href="{{ . | absURL }}">
             {{ end }}
         {{ end }}
+
+        {{ if isset .Site.Params "manifest" }}
+            <link rel="manifest" href="{{ .Site.Params.manifest }}">
+        {{ end }}
     </head>
     <body class="bilberry-hugo-theme">
         {{ partial "topnav" . }}
@@ -114,6 +118,10 @@
             {{ partial "algolia-search" . }}
         {{ end }}
 
-
+        <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('serviceworker.js')
+        }
+        </script>
     </body>
 </html>
